@@ -18,9 +18,20 @@ library(tidyverse)
 bmw_sales<- read_csv(here("data", "bmw_sales_data.csv"))
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+# Filter the data
 
 ```{r}
 bmw_sales_decade <- bmw_sales %>% 
   filter(Year >= 2014)
+```
+
+# Top 3 popular models
+
+```{r}
+#rank BMW models by sales volume
+#will use object bmw)decade_top3 for inline text describing top 3
+bmw_decade_top3 <- bmw_sales_decade |> 
+  group_by(Model) |> 
+  summarize(Model_Sales = sum(Sales_Volume)) |> 
+  arrange(desc(Model_Sales))
 ```
