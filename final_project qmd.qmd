@@ -10,6 +10,7 @@ editor: visual
 # install.packages("tidyverse")
 library(here)
 library(tidyverse)
+library(ggplot2)
 ```
 
 # Load the data
@@ -96,4 +97,19 @@ color = "Fuel Type"
 theme_minimal()
 
 
+```
+
+Visualization Trends in BMW Model Price From 2014 to 2024 by Region
+
+```{r}
+bmw_sales_decade |>
+  ggplot(aes(Year, Price_USD, color = Model)) +
+  geom_smooth(se = FALSE) +
+  labs(
+    x = 'Year',
+    y = 'Price (USD)',
+    title = 'Trends in BMW Model Price From 2014 to 2024 by Region',
+    subtitle = 'Top 3 Bestselling BMW Models'
+  ) +
+  facet_wrap(~Region)
 ```
